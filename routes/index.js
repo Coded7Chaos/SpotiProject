@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 /* GET another page.*/
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'NICOLE' });
+  res.render('index', { title: 'UNIVERSIDAD CATOLICA BOLIVIANA' });
 });
 
 module.exports = router;
