@@ -5,9 +5,12 @@ var app = express();
 
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+/*
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+*/
+
+var productsRouter = require('./routes/products');
 
 
 /*
@@ -22,17 +25,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+
+app.use('/products', productsRouter);
+
+
+// SHOWS ERROR: No default engine was specified and no extension was provided.
+/*
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
-
-/*
-// catch 404 and forward to error handler // SHOWS ERROR: No default engine was specified and no extension was provided.
+*/
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-*/
+
 // error handler    THIS IS A BLOCK OF CODE, DOESN;T REALLY INTERFER
 
 app.use(function(err, req, res, next) {
@@ -47,13 +55,9 @@ app.use(function(err, req, res, next) {
 
 
 
-app.use((req, res, next)=>{
-    res.status(200).json({
-      message: "It works!"
-    })
-})
 
-/*vsrstbvrg*/
+
+
 
 
 
