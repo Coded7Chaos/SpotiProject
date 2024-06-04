@@ -4,7 +4,9 @@ var path = require('path');
 var app = express();
 var mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://milaeloc:millaeloc@mycluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+const uri = "mongodb+srv://milaeloc:milaeloc@mycluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+
+//const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -15,6 +17,7 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -32,14 +35,15 @@ run().catch(console.dir);
 
 
 
-//const uri = "mongodb+srv://milaeloc:milaeloc@mycluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+
+//const uri = "mongodb+srv://milaeloc:milaeloc@MyCluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
 
 
 
 
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 
+/*
 
 async function run() {
   try {
@@ -52,7 +56,10 @@ async function run() {
     await mongoose.disconnect();
   }
 }
+
 run().catch(console.dir);
+*/
+
 
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
