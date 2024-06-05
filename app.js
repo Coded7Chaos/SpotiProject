@@ -3,62 +3,27 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var mongoose = require('mongoose');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+
+
+
 const uri = "mongodb+srv://milaeloc:milaeloc@mycluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
 
-//const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
-
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
-
-
-
-
-
-//const uri = "mongodb+srv://milaeloc:milaeloc@MyCluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
-
-
-
-
-
-
-/*
-
-async function run() {
-  try {
-    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(uri, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
-  }
+      try {
+        // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+        await mongoose.connect(uri, clientOptions);
+        await mongoose.connection.db.admin().command({ping: 1});
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+      }
+      catch (error) {
+        console.error(error);
+        process.exit(1); // Exit the application on error
+      }
 }
 
 run().catch(console.dir);
-*/
+
 
 
 var cookieParser = require('cookie-parser');
@@ -69,10 +34,6 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var ordersRouter = require('./routes/orders');
 
-
-//Mongoose conection
-
-//mongoose.connect("mongodb+srv://milaeloc:milaeloc@mycluster.st1emty.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -86,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Preventing CORS errors
-/*
+
 
 app.use((req,res,next)=>{
   res.header('Access-Control-Allow-Origin', '*');
@@ -97,9 +58,9 @@ app.use((req,res,next)=>{
   }
   next();
 });
-*/
 
-//conecction to files in routes
+
+//conecction to files in routes MIDDLEWARES
 
 
 app.use('/products', productsRouter);
