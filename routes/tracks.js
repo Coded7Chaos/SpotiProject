@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const productSchema = require('../models/tracks/trackDto');
+const tracksSchema = require('../models/tracks/trackDto');
 const mongoose = require('mongoose');
 
 
